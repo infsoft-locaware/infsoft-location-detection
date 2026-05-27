@@ -1,0 +1,59 @@
+name: Create release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract changelog section
+        id: changelog
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+
+          awk -v version="$VERSION" '
+            $0 == "## " version { capture = 1; next }
+            /^## / && capture { exit }
+            capture { lines[++count] = $0 }
+            END {
+              start = 1
+              end = count
+
+              while (start <= end && lines[start] == "") {
+                start++
+              }
+
+              while (end >= start && lines[end] == "") {
+                end--
+              }
+
+              for (i = start; i <= end; i++) {
+                print lines[i]
+              }
+            }
+          ' ChangeLog.md > release-notes.md          
+
+          if [ ! -s release-notes.md ]; then
+            echo "::error::Could not find non-empty changelog section for ## $VERSION in ChangeLog.md"
+            exit 1
+          fi
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG_NAME" \
+            --title "$TAG_NAME" \
+            --notes-file release-notes.md
+
