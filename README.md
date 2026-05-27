@@ -23,25 +23,10 @@ The host app remains responsible for requesting user permissions before initiali
 
 ## Installation
 
-Use the public Swift package repository.
+Use the public [Swift Package Index](https://swiftpackageindex.com/infsoft-locaware/infsoft-location-detection).
 The package repository points to the published binary framework and is updated with each SDK release.
 
-In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.0.2` or newer.
-
-For another Swift package, add the SDK as a package dependency:
-
-```swift
-.package(
-    url: "https://github.com/infsoft-locaware/infsoft-location-detection.git",
-    from: "0.0.2"
-)
-```
-
-Then add the library product to your target:
-
-```swift
-.product(name: "location_detection", package: "location_detection")
-```
+In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.0.3` or newer.
 
 ## Usage
 
@@ -102,7 +87,7 @@ Add the required usage descriptions to the app target's `Info.plist` for the sen
 
 Request runtime access in your app flow before SDK initialization. For example, request Core Location and camera access from the sample app or onboarding screen, then call ``UserLocationManager/initialize(handler:config:)`` after the user has answered.
 
-After initialization, inspect missing permissions when debugging:
+After initialization, inspect missing permissions, e.g., to show the user a banner:
 
 ```swift
 Task {
