@@ -1,5 +1,8 @@
 # infsoft Location Detection SDK
 
+ [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Finfsoft-locaware%2Finfsoft-location-detection%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/infsoft-locaware/infsoft-location-detection)
+ [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Finfsoft-locaware%2Finfsoft-location-detection%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/infsoft-locaware/infsoft-location-detection)
+
 Use the infsoft location detection SDK to collect device sensor data, send it to the location calculation service, and receive calculated user positions for indoor and outdoor positioning.
 This repo is a wrapper around the distributed binary sdk for usage with the Swift Package Manager.
 
@@ -23,14 +26,14 @@ The host app remains responsible for requesting user permissions before initiali
 Use the public Swift package repository.
 The package repository points to the published binary framework and is updated with each SDK release.
 
-In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.0.1` or newer.
+In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.0.2` or newer.
 
 For another Swift package, add the SDK as a package dependency:
 
 ```swift
 .package(
     url: "https://github.com/infsoft-locaware/infsoft-location-detection.git",
-    from: "0.0.1"
+    from: "0.0.2"
 )
 ```
 
