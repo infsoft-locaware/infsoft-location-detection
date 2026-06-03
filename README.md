@@ -26,7 +26,7 @@ The host app remains responsible for requesting user permissions before initiali
 Use the public [Swift Package Index](https://swiftpackageindex.com/infsoft-locaware/infsoft-location-detection).
 The package repository points to the published binary framework and is updated with each SDK release.
 
-In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.0.3` or newer.
+In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.0.4` or newer.
 
 ## Usage
 

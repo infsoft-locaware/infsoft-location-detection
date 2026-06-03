@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.0.4
+- Minor refactoring
+
 ## 0.0.3
 
 - Improved docs
