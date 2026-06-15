@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.1.0
+- Implement UWB beacon ranging
+
 ## 0.0.4
 - Minor refactoring
 

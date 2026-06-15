@@ -15,11 +15,12 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "location_detection",
-            url: "https://sdk.infsoft.com/ios/location_detection.0.0.4.xcframework.zip",
-            checksum: "82255e15415d3467ae5efff5eab1bb7cc06372c423700ba949ce4b907a761713"
+            url: "https://sdk.infsoft.com/ios/location_detection.0.1.0.xcframework.zip",
+            checksum: "55bcfada2e44a786f53da732898c9b98b34418a6f66aa03240177fdd442c3d21"
         )
     ]
 )
+
 
 
 
