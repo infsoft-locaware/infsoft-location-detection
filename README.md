@@ -26,7 +26,7 @@ The host app remains responsible for requesting user permissions before initiali
 Use the public [Swift Package Index](https://swiftpackageindex.com/infsoft-locaware/infsoft-location-detection).
 The package repository points to the published binary framework and is updated with each SDK release.
 
-In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.1.0` or newer.
+In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.1.1` or newer.
 
 ## Usage
 
@@ -43,7 +43,8 @@ let config = SdkConfiguration(
     uwbEnabled: true,
     barometerEnabled: true,
     compassEnabled: true,
-    language: "en"
+    language: "en",
+    iBeaconId: UUID(uuidString: "<your custom iBeacon id>")! // only required if you are not using infsoft's hardware
 )
 ```
 
@@ -109,6 +110,7 @@ Use ``SdkConfiguration`` to control which sensors are active.
 - ``SdkConfiguration/barometerEnabled``: Enables pressure readings when the device supports barometer data.
 - ``SdkConfiguration/compassEnabled``: Enables compass heading readings when available.
 - ``SdkConfiguration/language``: Language code sent to the backend, this localizes the metadata information.
+- `SdkConfiguration/iBeaconId`: UUID used as constraint for iBeacon ranging, only required to be set, when custom hardware is used.
 
 Disabled sensors are not started and are marked disabled in debug sensor output.
 

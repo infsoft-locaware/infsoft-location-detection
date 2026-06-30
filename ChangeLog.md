@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.1.1
+- Allow to specify a custom iBeacon UUID for BLE scanning
 ## 0.1.0
 - Implement UWB beacon ranging
 
