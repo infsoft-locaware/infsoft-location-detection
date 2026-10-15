@@ -8,16 +8,20 @@ This repo is a wrapper around the distributed binary sdk for usage with the Swif
 
 ## Overview
 
-`location_detection` is an iOS framework that coordinates local sensors and forwards their data to the infsoft positioning backend. The framework periodically emits ``UserLocation`` values through the callback passed to ``UserLocationManager/initialize(handler:config:)``.
+`location_detection` is a framework for iOS and macOS that coordinates local sensors and forwards their data to the infsoft positioning backend. The framework periodically emits ``UserLocation`` values through the callback passed to ``UserLocationManager/initialize(handler:config:)``.
 
 The SDK can use the following sensor inputs, depending on configuration, device support, and app permissions:
 
-- ARKit camera motion
-- GPS / Core Location
-- BLE beacon ranging
-- UWB accessory ranging with Nearby Interaction
-- Barometer pressure
-- Compass heading
+| Sensor | iOS | macOS |
+| --- | --- | --- |
+| ARKit camera motion | ✓ | – |
+| GPS / Core Location | ✓ | ✓ |
+| BLE beacon ranging | ✓ | ✓ |
+| UWB accessory ranging with Nearby Interaction | ✓ | – |
+| Barometer pressure | ✓ | – |
+| Compass heading | ✓ | – |
+
+On macOS, enabling AR or UWB reports ``Permissions/arKit`` or ``Permissions/uwb`` through ``UserLocationManager/getNonGrantedPermissions()``; barometer and compass are skipped silently, as on iOS devices without these sensors.
 
 The host app remains responsible for requesting user permissions before initializing the SDK. The SDK checks permission state, starts only the scanners that are available, and exposes missing permissions through ``UserLocationManager/getNonGrantedPermissions()``.
 
@@ -26,7 +30,7 @@ The host app remains responsible for requesting user permissions before initiali
 Use the public [Swift Package Index](https://swiftpackageindex.com/infsoft-locaware/infsoft-location-detection).
 The package repository points to the published binary framework and is updated with each SDK release.
 
-In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.1.1` or newer.
+In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.2.0` or newer.
 
 ## Usage
 
@@ -85,6 +89,8 @@ Add the required usage descriptions to the app target's `Info.plist` for the sen
 - `NSCameraUsageDescription` for ARKit camera motion.
 - `NSNearbyInteractionUsageDescription` for UWB accessory ranging.
 - `NSMotionUsageDescription` if the app uses motion features that require it in the target deployment environment.
+
+On macOS, sandboxed apps additionally need the `com.apple.security.personal-information.location` and `com.apple.security.device.bluetooth` entitlements (and `com.apple.security.device.camera` if requesting camera access).
 
 Request runtime access in your app flow before SDK initialization. For example, request Core Location and camera access from the sample app or onboarding screen, then call ``UserLocationManager/initialize(handler:config:)`` after the user has answered.
 
@@ -203,7 +209,7 @@ The SDK scans for accessories, exchanges Nearby Interaction configuration data, 
 
 ### Lifecycle
 
-`UserLocationManager` automatically observes app foreground/background notifications. When the app enters the background, it schedules scanner shutdown after a short delay. When the app becomes active again, it resumes scanners if location detection was running.
+`UserLocationManager` automatically observes lifecycle notifications. On iOS, when the app enters the background, it schedules scanner shutdown after a short delay, and resumes scanners when the app becomes active again. On macOS, scanners keep running while the app is inactive; they are paused when the system goes to sleep and resumed on wake.
 
 Call ``UserLocationManager/stop()`` when the app no longer needs active location detection. This stops all scanners and cancels the SDK worker loop.
 

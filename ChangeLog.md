@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 0.2.0
+- Add macOS support (GPS and BLE beacon ranging; AR, UWB, barometer, and compass remain iOS-only)
+- On macOS, scanners pause while the system sleeps instead of on app backgrounding
+- Send `X-OS: MACOS` to the backend on macOS
+- Binaries are now published under `sdk.infsoft.com/apple/`
+- Add unit tests
 ## 0.1.1
 - Allow to specify a custom iBeacon UUID for BLE scanning
 ## 0.1.0
