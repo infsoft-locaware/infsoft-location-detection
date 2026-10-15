@@ -5,6 +5,7 @@ let package = Package(
     name: "infsoft location_detection",
     platforms: [
         .iOS(.v18)
+        .macOS(.v15)
     ],
     products: [
         .library(
