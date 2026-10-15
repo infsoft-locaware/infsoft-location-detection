@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.1
+- Fix Swift Package Manager integration for macOS
 ## 0.2.0
 - Add macOS support (GPS and BLE beacon ranging; AR, UWB, barometer, and compass remain iOS-only)
 - On macOS, scanners pause while the system sleeps instead of on app backgrounding
