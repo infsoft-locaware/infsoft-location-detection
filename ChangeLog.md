@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.2
+- Detect BLE beacons on macOS: Core Location does not range beacons there, so the iBeacon frames are read from a CoreBluetooth scan (one mean RSSI per beacon and second)
 ## 0.2.1
 - Fix Swift Package Manager integration for macOS
 ## 0.2.0

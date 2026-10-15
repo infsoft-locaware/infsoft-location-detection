@@ -21,6 +21,8 @@ The SDK can use the following sensor inputs, depending on configuration, device 
 | Barometer pressure | ✓ | – |
 | Compass heading | ✓ | – |
 
+On macOS, Core Location cannot range beacons (`CLLocationManager.isRangingAvailable()` is false), so the SDK reads the iBeacon frames of ``SdkConfiguration/iBeaconId`` from a CoreBluetooth scan and reports one mean RSSI per beacon and second, as ranging does on iOS. It needs the Bluetooth permission only.
+
 On macOS, enabling AR or UWB reports ``Permissions/arKit`` or ``Permissions/uwb`` through ``UserLocationManager/getNonGrantedPermissions()``; barometer and compass are skipped silently, as on iOS devices without these sensors.
 
 The host app remains responsible for requesting user permissions before initializing the SDK. The SDK checks permission state, starts only the scanners that are available, and exposes missing permissions through ``UserLocationManager/getNonGrantedPermissions()``.
@@ -30,7 +32,7 @@ The host app remains responsible for requesting user permissions before initiali
 Use the public [Swift Package Index](https://swiftpackageindex.com/infsoft-locaware/infsoft-location-detection).
 The package repository points to the published binary framework and is updated with each SDK release.
 
-In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.2.1` or newer.
+In Xcode, choose **File > Add Package Dependencies**, enter `https://github.com/infsoft-locaware/infsoft-location-detection.git`, and select version `0.2.2` or newer.
 
 ## Usage
 
@@ -84,7 +86,7 @@ Request permissions in the app before calling ``UserLocationManager/initialize(h
 
 Add the required usage descriptions to the app target's `Info.plist` for the sensors you enable:
 
-- `NSLocationWhenInUseUsageDescription` for GPS and BLE beacon ranging.
+- `NSLocationWhenInUseUsageDescription` for GPS and, on iOS, BLE beacon ranging.
 - `NSBluetoothAlwaysUsageDescription` for BLE and UWB accessory scanning.
 - `NSCameraUsageDescription` for ARKit camera motion.
 - `NSNearbyInteractionUsageDescription` for UWB accessory ranging.
