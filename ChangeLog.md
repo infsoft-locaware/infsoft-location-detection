@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.3
+- Send the beacon's calibrated RSSI at 1 m (iBeacon measured power) as `txPower` on macOS instead of 0 - the backend took every beacon for kilometers away and reported the accuracy far too large
 ## 0.2.2
 - Detect BLE beacons on macOS: Core Location does not range beacons there, so the iBeacon frames are read from a CoreBluetooth scan (one mean RSSI per beacon and second)
 ## 0.2.1
