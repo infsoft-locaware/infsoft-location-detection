@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.4
+- Add opt-in diagnostics: `LocationDetectionDiagnostics.setHandler(_:)` gets every request body sent to the positioning backend and its answer, one line each - for an app that lets its user turn on log files. Nothing is built or logged without a handler; the API key is never written
 ## 0.2.3
 - Send the beacon's calibrated RSSI at 1 m (iBeacon measured power) as `txPower` on macOS instead of 0 - the backend took every beacon for kilometers away and reported the accuracy far too large
 ## 0.2.2
