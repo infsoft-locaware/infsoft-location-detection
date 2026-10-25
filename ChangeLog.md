@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.5
+- Add `UserLocationManager.resetSession()` and `UserLocationManager.sessionId`: an app can start a new backend session, so the backend calculates from scratch instead of continuing from what the old session held. Readings collected for the old session are dropped; the client id stays
 ## 0.2.4
 - Add opt-in diagnostics: `LocationDetectionDiagnostics.setHandler(_:)` gets every request body sent to the positioning backend and its answer, one line each - for an app that lets its user turn on log files. Nothing is built or logged without a handler; the API key is never written
 ## 0.2.3
