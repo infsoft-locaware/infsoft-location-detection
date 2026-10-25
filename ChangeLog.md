@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.6
+- Fix crashes after hours of running (heap corruption, `EXC_BAD_ACCESS` in `swift_release_dealloc`): the collected readings and the shared configuration and session are now behind a lock - the scanners wrote them from their queues while the request loop took and reset them on another thread
 ## 0.2.5
 - Add `UserLocationManager.resetSession()` and `UserLocationManager.sessionId`: an app can start a new backend session, so the backend calculates from scratch instead of continuing from what the old session held. Readings collected for the old session are dropped; the client id stays
 ## 0.2.4
