@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.7
+- Fix location detection stopping for good when the system woke within 2 s of going to sleep (on macOS also when only the display went off and on): cancelling the scheduled stop ran the stop at once instead of dropping it, after the wake had found the manager still running
 ## 0.2.6
 - Fix crashes after hours of running (heap corruption, `EXC_BAD_ACCESS` in `swift_release_dealloc`): the collected readings and the shared configuration and session are now behind a lock - the scanners wrote them from their queues while the request loop took and reset them on another thread
 ## 0.2.5
