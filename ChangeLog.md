@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.8
+- Fix location detection starting again on its own after the app stopped it: a wake (on macOS also the display coming back on) restarted a stopped manager, which then ran beside the next one the app initialized - two request loops on one backend session, splitting the readings between them. A wake now resumes only what the sleep paused
 ## 0.2.7
 - Fix location detection stopping for good when the system woke within 2 s of going to sleep (on macOS also when only the display went off and on): cancelling the scheduled stop ran the stop at once instead of dropping it, after the wake had found the manager still running
 ## 0.2.6
