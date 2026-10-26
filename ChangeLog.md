@@ -1,5 +1,7 @@
 # ChangeLog
 
+## 0.2.9
+- macOS: every request carries the `mac` hints whether the Mac stands still or was moved - `docked` (network cable, external display or lid closed), `desktop` (no internal battery), `bssidChanged` (the Wi-Fi access point changed since the previous request; reading the BSSID needs the location permission) and `wokeAt` (the last wake from sleep). The backend reads them since its Mac estimator; from BLE alone it cannot tell a beacon the scans miss for seconds from a move
 ## 0.2.8
 - Fix location detection starting again on its own after the app stopped it: a wake (on macOS also the display coming back on) restarted a stopped manager, which then ran beside the next one the app initialized - two request loops on one backend session, splitting the readings between them. A wake now resumes only what the sleep paused
 ## 0.2.7
