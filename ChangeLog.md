@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 1.0.0
+- First stable release, together with Android and Windows 1.0.0: the three SDKs now have the same features (`resetSession()`, `sessionId`, `LocationDetectionDiagnostics`, a custom iBeacon UUID) and send the same request. The source moved to the monorepo infsoft-org/SDK.LocationDetection; the Swift package is now infsoft-org/infsoft-location-detection (the old URL redirects)
+- Fix the request URL: it had a double slash before `calc/session`
+- A request to the backend now times out after 2 s, as on Android and Windows, instead of the system's 60 s - a hanging request held back every reading collected meanwhile
+- Fix the compass heading: it was counted counter-clockwise from the device's right edge; it is now the heading of the device's top edge, clockwise from magnetic north, as on Android and Windows
+- With the AR camera enabled on a device without ARKit (and on macOS), the missing permissions now report `arKit` instead of `video`
 ## 0.2.9
 - macOS: every request carries the `mac` hints whether the Mac stands still or was moved - `docked` (network cable, external display or lid closed), `desktop` (no internal battery), `bssidChanged` (the Wi-Fi access point changed since the previous request; reading the BSSID needs the location permission) and `wokeAt` (the last wake from sleep). The backend reads them since its Mac estimator; from BLE alone it cannot tell a beacon the scans miss for seconds from a move
 ## 0.2.8
